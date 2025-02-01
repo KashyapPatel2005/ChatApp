@@ -23,11 +23,25 @@ function Chat({ socket, username, room }) {
     }
   };
 
+  // useEffect(() => {
+  //   socket.on("receive_message", (data) => {
+  //     setMessageList((list) => [...list, data]);
+  //   });
+  // }, [socket]);
+
   useEffect(() => {
-    socket.on("receive_message", (data) => {
+    const handleReceiveMessage = (data) => {
       setMessageList((list) => [...list, data]);
-    });
+    };
+  
+    socket.on("receive_message", handleReceiveMessage);
+  
+    // Cleanup function to prevent duplicate event listeners
+    return () => {
+      socket.off("receive_message", handleReceiveMessage);
+    };
   }, [socket]);
+  
 
   return (
     <div className="chat-window">
@@ -64,9 +78,7 @@ function Chat({ socket, username, room }) {
           onChange={(event) => {
             setCurrentMessage(event.target.value);
           }}
-          onKeyPress ={(event) => {
-            event.key === "Enter" && sendMessage();
-          }}
+ 
         />
         <button onClick={sendMessage}>&#9658;</button>
       </div>
