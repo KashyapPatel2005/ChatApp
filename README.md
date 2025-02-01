@@ -25,3 +25,10 @@ Frontend: React, useState, useEffect, react-scroll-to-bottom
 Backend: Node.js, Express.js, Socket.IO
 Real-time Communication: WebSockets via Socket.IO
 
+
+## OUTPUT
+
+![Image](https://github.com/user-attachments/assets/048ff6f9-50e4-46ed-a3ea-f6d5ac110335)
+
+
+
